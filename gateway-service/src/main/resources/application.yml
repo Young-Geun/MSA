@@ -12,15 +12,21 @@ spring:
   application:
     name: apigateway-service
 
-# ??? ??? JAVA?? ????? ??
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: first-service
-#          uri: http://localhost:8081/
-#          predicates:
-#            - Path=/first-service/**
-#        - id: second-service
-#          uri: http://localhost:8082/
-#          predicates:
-#            - Path=/second-service/**
+
+  cloud:
+    gateway:
+      routes:
+        - id: first-service
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/first-service/**
+          filters:
+            - AddRequestHeader=request, request-first-value-yaml
+            - AddResponseHeader=response, response-first-value-yaml
+        - id: second-service
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/second-service/**
+          filters:
+            - AddRequestHeader=request, request-second-value-yaml
+            - AddResponseHeader=response, response-second-value-yaml
