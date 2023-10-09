@@ -2,6 +2,7 @@ package com.example.userservice.Controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,12 @@ public class FirstController {
 
     @GetMapping("/welcome")
     public String welcome() {
-        return "welcome First service : " + serverPort;
+        return "[" + serverPort + "] welcome First service";
+    }
+
+    @GetMapping("/message")
+    public String message(@RequestHeader("request") String header) {
+        return "[" + serverPort + "] header=" + header;
     }
 
 }
