@@ -23,4 +23,9 @@ public class FirstController {
         return "[" + serverPort + "] header=" + header;
     }
 
+    @GetMapping("/check")
+    public String check() {
+        return "[" + serverPort + "] check()";
+    }
+
 }

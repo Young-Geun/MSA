@@ -21,12 +21,14 @@ spring:
           predicates:
             - Path=/first-service/**
           filters:
-            - AddRequestHeader=request, request-first-value-yaml
-            - AddResponseHeader=response, response-first-value-yaml
+#            - AddRequestHeader=request, request-first-value-yaml
+#            - AddResponseHeader=response, response-first-value-yaml
+            - CustomFilter
         - id: second-service
           uri: http://localhost:8082/
           predicates:
             - Path=/second-service/**
           filters:
-            - AddRequestHeader=request, request-second-value-yaml
-            - AddResponseHeader=response, response-second-value-yaml
+#            - AddRequestHeader=request, request-second-value-yaml
+#            - AddResponseHeader=response, response-second-value-yaml
+            - CustomFilter
