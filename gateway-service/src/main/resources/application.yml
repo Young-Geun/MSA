@@ -3,10 +3,10 @@ server:
 
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
     server-url:
-      defaultZone: http://localhost:8761
+      defaultZone: http://localhost:8761/eureka
 
 spring:
   application:
@@ -23,7 +23,7 @@ spring:
             postLogger: true
       routes:
         - id: first-service
-          uri: http://localhost:8081/
+          uri: lb://USER-SERVICE-8081
           predicates:
             - Path=/first-service/**
           filters:
@@ -31,7 +31,7 @@ spring:
 #            - AddResponseHeader=response, response-first-value-yaml
             - CustomFilter
         - id: second-service
-          uri: http://localhost:8082/
+          uri: lb://USER-SERVICE-8082
           predicates:
             - Path=/second-service/**
           filters:
