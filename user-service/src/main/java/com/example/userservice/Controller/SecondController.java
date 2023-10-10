@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// java -jar -Dserver.port=8082 user-service-0.0.1-SNAPSHOT.jar
 @RestController
 @RequestMapping("/second-service/")
 public class SecondController {
