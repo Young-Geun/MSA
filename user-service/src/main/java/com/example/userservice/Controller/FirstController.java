@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 // java -jar -Dserver.port=8081 user-service-0.0.1-SNAPSHOT.jar
 @RestController
 @RequestMapping("/first-service/")
@@ -25,8 +27,8 @@ public class FirstController {
     }
 
     @GetMapping("/check")
-    public String check() {
-        return "[" + serverPort + "] check()";
+    public String check(HttpServletRequest request) {
+        return "[" + request.getServerPort() + "] check()";
     }
 
 }
