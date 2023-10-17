@@ -23,5 +23,6 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-env:
-  choi: 1234
+token:
+  expiration-time: 86400000
+  secret: user_token
