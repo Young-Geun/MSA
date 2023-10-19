@@ -31,11 +31,13 @@ public class UserController {
                 "It's Working : %s, " +
                 "local.server.port : %s, " +
                 "server.port : %s, " +
-                "token secret : %s",
+                "token secret : %s, " +
+                "actuator.refresh-test : %s",
                 request.getServerPort(),
                 env.getProperty("local.server.port"),
                 env.getProperty("server.port"),
-                env.getProperty("token.secret")
+                env.getProperty("token.secret"),
+                env.getProperty("actuator.refresh-test")
             );
     }
 
