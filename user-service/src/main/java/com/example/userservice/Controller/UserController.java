@@ -8,6 +8,7 @@ import com.example.userservice.vo.ResponseUser;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,22 @@ import java.util.List;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class UserController {
+
+    private final Environment env;
     private final UserService userService;
 
     @GetMapping("/health-check")
     public String status(HttpServletRequest request) {
-        return String.format("It's Working : %s", request.getServerPort());
+        return String.format(
+                "It's Working : %s, " +
+                "local.server.port : %s, " +
+                "server.port : %s, " +
+                "token secret : %s",
+                request.getServerPort(),
+                env.getProperty("local.server.port"),
+                env.getProperty("server.port"),
+                env.getProperty("token.secret")
+            );
     }
 
     @PostMapping("/users")
