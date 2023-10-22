@@ -39,3 +39,6 @@ management:
       exposure:
         include: refresh, health, beans, busrefresh
 
+logging:
+  level:
+    com.example.userservice.client: DEBUG
