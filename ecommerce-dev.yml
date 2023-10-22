@@ -8,5 +8,9 @@ spring:
 token:
   expiration-time: 86400000
   secret: '{cipher}AQAGsi9VwtBtUVdqrixE7nPx7oe3xrgZ49Kf8h92yPUUN1v+TaX4rSEgepXyTiZtG2SSXaVD7tZIYByfid6VC/n+5B+JMtBhs4umPyZ5M5X5Pvqer08jFYSre1KuQVIUD2DnzQI6JVgxGDRzGuVD5MfDPxeWjMJTalzvYPswj6mG7XNM2/CXtso1jlX7JrDn7L+IUI2MtlZ31jcZ7CCDW8HbTqoCLAZFcdMthpYBsoav1/uxPhOsEYW1Gh1qpPB3bIXMgpNxK8d02ffTTosYsnZ3lUrSzMWcAJPD9RUcocfUrmnURaXVzKr/ngAo2JkhCVpApa4H58s4BuomVjCBKoFvZsQoVc4CH4GO+FUzQLSp0hg1AsPpLg/MHiiAni+mteo='
+
 actuator:
   refresh-test: hello_using_rabbitmq
+
+order-service:
+  url: http://127.0.0.1:8000/order-service/%s/orders
