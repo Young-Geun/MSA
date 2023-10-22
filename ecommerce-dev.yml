@@ -13,4 +13,4 @@ actuator:
   refresh-test: hello_using_rabbitmq
 
 order-service:
-  url: http://127.0.0.1:8000/order-service/%s/orders
+  url: http://ORDER-SERVICE-0/order-service/%s/orders
