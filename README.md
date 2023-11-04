@@ -39,3 +39,10 @@
   - docker exec -it mariadb /bin/bash
   - mysql -uroot -p -h127.0.0.1
   - docker stop mariadb / docker start mariadb
+- Service
+  - User
+    - Dockerfile 경로에서 아래 명령어 실행
+    - docker build -f /Users/choi/dev/msa/user-service/Dockerfile --tag 1992choi/user-service:1.0 .
+    - docker push 1992choi/user-service:1.0
+    - docker run 1992choi/user-service:1.0 (기본 실행)
+    - docker run -d 1992choi/user-service:1.0 (백그라운드 실행)
