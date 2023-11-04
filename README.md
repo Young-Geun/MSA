@@ -26,5 +26,16 @@
 - ID/PW = admin/admin
 
 ### Docker
-- 이미지 검색 : docker image ls
-- 컨테이너 검색 : docker container ls
+- 이미지
+  - 검색 : docker image ls
+- 컨테이너
+  - 검색 : docker container ls
+  - 상태 : docker ps -a
+  - 로그 : docker logs #CONTAINER ID#
+  - 삭제 : docker container rm #CONTAINER ID#
+- MariaDB
+  - docker pull mariadb
+  - docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --name mariadb mariadb:latest
+  - docker exec -it mariadb /bin/bash
+  - mysql -uroot -p -h127.0.0.1
+  - docker stop mariadb / docker start mariadb
