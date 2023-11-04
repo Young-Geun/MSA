@@ -24,3 +24,7 @@
 - ./grafana-server
 - http://localhost:3000/
 - ID/PW = admin/admin
+
+### Docker
+- 이미지 검색 : docker image ls
+- 컨테이너 검색 : docker container ls
