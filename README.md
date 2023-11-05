@@ -33,6 +33,10 @@
   - 상태 : docker ps -a
   - 로그 : docker logs #CONTAINER ID#
   - 삭제 : docker container rm #CONTAINER ID#
+- 네트워크
+  - 목록 : docker network ls  
+  - 할당 : docker network create --gateway 172.18.0.1 --subnet 172.18.0.0/16 ecommerce-network
+  - 상세 : docker network inspect ecommerce-network
 - MariaDB
   - docker pull mariadb
   - docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --name mariadb mariadb:latest
