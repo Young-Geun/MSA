@@ -33,6 +33,12 @@
   - 상태 : docker ps -a
   - 로그 : docker logs #CONTAINER ID#
   - 삭제 : docker container rm #CONTAINER ID#
+- 네트워크
+  - 목록 : docker network ls  
+  - 할당 : docker network create --gateway 172.18.0.1 --subnet 172.18.0.0/16 ecommerce-network
+  - 상세 : docker network inspect ecommerce-network
+- RabbitMQ
+  - 등록 : docker run -d --name rabbitmq --network ecommerce-network -p 15672:15672 -p 5672:5672 -p 15671:15671 -p 5671:5671 -p 4369:4369 -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest rabbitmq:management
 - MariaDB
   - docker pull mariadb
   - docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --name mariadb mariadb:latest
@@ -40,9 +46,13 @@
   - mysql -uroot -p -h127.0.0.1
   - docker stop mariadb / docker start mariadb
 - Service
+  - Config
+    - Dockerfile 경로에서 아래 명령어 실행
+    - docker build -t 1992choi/config-service:1.0 .
+    - docker run -d -p 8888:8888 --network ecommerce-network -e "spring.rabbitmq.host=rabbitmq" -e "spring.profiles.active=default" --name config-service 1992choi/config-service:1.0
   - User
     - Dockerfile 경로에서 아래 명령어 실행
-    - docker build -f /Users/choi/dev/msa/user-service/Dockerfile --tag 1992choi/user-service:1.0 .
+    - docker build -t 1992choi/user-service:1.0 .
     - docker push 1992choi/user-service:1.0
     - docker run 1992choi/user-service:1.0 (기본 실행)
     - docker run -d 1992choi/user-service:1.0 (백그라운드 실행)
