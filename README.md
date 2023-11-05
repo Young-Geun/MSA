@@ -57,6 +57,11 @@
     - docker build -t 1992choi/discovery-service:1.0 .
     - docker push 1992choi/discovery-service:1.0
     - docker run -d -p 8761:8761 --network ecommerce-network -e "spring.cloud.config.uri=http://config-service:8888" --name discovery-service 1992choi/discovery-service:1.0
+  - Gateway
+    - Dockerfile 경로에서 아래 명령어 실행
+    - docker build -t 1992choi/gateway-service:1.0 .
+    - docker push 1992choi/gateway-service:1.0
+    - docker run -d -p 8000:8000 --network ecommerce-network -e "spring.cloud.config.uri=http://config-service:8888" -e "spring.rabbitmq.host=rabbitmq" -e "eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/" --name gateway-service 1992choi/gateway-service:1.0
   - User
     - Dockerfile 경로에서 아래 명령어 실행
     - docker build -t 1992choi/user-service:1.0 .
