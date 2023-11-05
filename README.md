@@ -32,6 +32,7 @@
   - 검색 : docker container ls
   - 상태 : docker ps -a
   - 로그 : docker logs #CONTAINER ID#
+  - 중지 : docker stop #CONTAINER ID#
   - 삭제 : docker container rm #CONTAINER ID#
 - 네트워크
   - 목록 : docker network ls  
@@ -49,7 +50,13 @@
   - Config
     - Dockerfile 경로에서 아래 명령어 실행
     - docker build -t 1992choi/config-service:1.0 .
+    - docker push 1992choi/config-service:1.0
     - docker run -d -p 8888:8888 --network ecommerce-network -e "spring.rabbitmq.host=rabbitmq" -e "spring.profiles.active=default" --name config-service 1992choi/config-service:1.0
+  - Eureka
+    - Dockerfile 경로에서 아래 명령어 실행
+    - docker build -t 1992choi/discovery-service:1.0 .
+    - docker push 1992choi/discovery-service:1.0
+    - docker run -d -p 8761:8761 --network ecommerce-network -e "spring.cloud.config.uri=http://config-service:8888" --name discovery-service 1992choi/discovery-service:1.0
   - User
     - Dockerfile 경로에서 아래 명령어 실행
     - docker build -t 1992choi/user-service:1.0 .
