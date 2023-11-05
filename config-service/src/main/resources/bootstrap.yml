@@ -1,6 +1,7 @@
 encrypt:
 #  key: abcd
   key-store:
-    location: file:///Users/choi/dev/keystore/apiEncryptionKey.jks
+    #location: file:///Users/choi/dev/keystore/apiEncryptionKey.jks
+    location: file:/apiEncryptionKey.jks
     password: test1234
     alias: apiEncryptionKey
