@@ -58,6 +58,42 @@
   - docker run -d -p 3306:3306 --network ecommerce-network --name mariadb 1992choi/mariadb:1.0
   - docker exec -it mariadb /bin/bash
   - mariadb -uroot -p
+- Kafka
+  - git clone https://github.com/wurstmeister/kafka-docker.git
+  - docker-compose-single-broker.yml 수정
+  - ```
+    version: '2'
+    services:
+      zookeeper:
+        image: wurstmeister/zookeeper
+        ports:
+          - "2181:2181"
+        networks:
+          my-network:
+            ipv4_address: 172.18.0.100
+      kafka:
+        #build: .
+        image: wurstmeister/kafka
+        ports:
+          - "9092:9092"
+        environment:
+          KAFKA_ADVERTISED_HOST_NAME: 172.18.0.101
+          KAFKA_CREATE_TOPICS: "test:1:1"
+          KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        depends_on:
+          - zookeeper
+        networks:
+          my-network:
+            ipv4_address: 172.18.0.101
+    
+    networks:
+      my-network:
+        name: ecommerce-network
+        external: true
+    ```
+  - 실행 : docker-compose -f docker-compose-single-broker.yml up -d
 - Service
   - Config
     - Dockerfile 경로에서 아래 명령어 실행
