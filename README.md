@@ -41,11 +41,10 @@
 - RabbitMQ
   - 등록 : docker run -d --name rabbitmq --network ecommerce-network -p 15672:15672 -p 5672:5672 -p 15671:15671 -p 5671:5671 -p 4369:4369 -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest rabbitmq:management
 - MariaDB
-  - docker pull mariadb
-  - docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --name mariadb mariadb:latest
+  - docker build -t 1992choi/mariadb:1.0 .
+  - docker run -d -p 3306:3306 --network ecommerce-network --name mariadb 1992choi/mariadb:1.0
   - docker exec -it mariadb /bin/bash
-  - mysql -uroot -p -h127.0.0.1
-  - docker stop mariadb / docker start mariadb
+  - mariadb -uroot -p
 - Service
   - Config
     - Dockerfile 경로에서 아래 명령어 실행
