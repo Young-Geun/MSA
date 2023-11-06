@@ -41,6 +41,19 @@
 - RabbitMQ
   - 등록 : docker run -d --name rabbitmq --network ecommerce-network -p 15672:15672 -p 5672:5672 -p 15671:15671 -p 5671:5671 -p 4369:4369 -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest rabbitmq:management
 - MariaDB
+  - mysql 원본 디렉토리를 별도의 디렉토리(db_data)로 복사한다.
+    - Ex) cp -R /opt/homebrew/var/mysql ./db_data
+  - db_data 동등레벨에 Dockerfile를 생성한다. 
+  - ```
+    Dockerfile
+    
+    FROM mariadb
+    ENV MYSQL_ROOT_PASSWORD test1357
+    ENV MYSQL_DATABASE mydb
+    COPY ./mysql /var/lib/mysql
+    EXPOSE 3306
+    CMD ["--user=root"]
+    ```
   - docker build -t 1992choi/mariadb:1.0 .
   - docker run -d -p 3306:3306 --network ecommerce-network --name mariadb 1992choi/mariadb:1.0
   - docker exec -it mariadb /bin/bash
