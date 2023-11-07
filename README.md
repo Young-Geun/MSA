@@ -94,6 +94,8 @@
         external: true
     ```
   - 실행 : docker-compose -f docker-compose-single-broker.yml up -d
+- Zipkin
+  - docker run -d -p 9411:9411 --network ecommerce-network --name zipkin openzipkin/zipkin
 - Service
   - Config
     - Dockerfile 경로에서 아래 명령어 실행
