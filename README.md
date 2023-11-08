@@ -96,6 +96,39 @@
   - 실행 : docker-compose -f docker-compose-single-broker.yml up -d
 - Zipkin
   - docker run -d -p 9411:9411 --network ecommerce-network --name zipkin openzipkin/zipkin
+- Prometheus / Grafana
+  - Prometheus
+    - prometheus.yml 파일 변경필요<br>
+      \- localhost:8080을 도커에 맞춰 gateway-service:8000으로 변경<br>
+      \- 자신의 포트 localhost:9090은 premetheus:9090으로 변경
+      ```
+      
+
+        - job_name: "prometheus"
+          static_configs:
+            - targets: ["premetheus:9090"]
+      
+        - job_name: "user-service"
+          scrape_interval: 15s
+          metrics_path: "/user-service/actuator/prometheus"
+          static_configs:
+            - targets: ["gateway-service:8000"]
+      
+        - job_name: "order-service"
+          scrape_interval: 15s
+          metrics_path: "/order-service/actuator/prometheus"
+          static_configs:
+            - targets: ["gateway-service:8000"]
+      
+        - job_name: "apigateway-service"
+          scrape_interval: 15s
+          metrics_path: "/actuator/prometheus"
+          static_configs:
+            - targets: ["gateway-service:8000"]
+      ```
+    - docker run -d -p 9090:9090 --network ecommerce-network --name prometheus -v /Users/choi/dev/prometheus-2.45.1.darwin-amd64/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+  - Grafana
+    - docker run -d -p 3000:3000 --network ecommerce-network --name grafana grafana/grafana 
 - Service
   - Config
     - Dockerfile 경로에서 아래 명령어 실행
