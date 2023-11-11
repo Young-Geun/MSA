@@ -56,8 +56,9 @@
     ```
   - docker build -t 1992choi/mariadb:1.0 .
   - docker run -d -p 3306:3306 --network ecommerce-network --name mariadb 1992choi/mariadb:1.0
-  - docker exec -it mariadb /bin/bash
-  - mariadb -uroot -p
+  - DB 실행 : docker exec -it mariadb /bin/bash
+  - DB 접속 : mariadb -uroot -p
+  - \* 어플리케이션들을 올리기 위해서 grant all privileges 명령어 필요 
 - Kafka
   - git clone https://github.com/wurstmeister/kafka-docker.git
   - docker-compose-single-broker.yml 수정
@@ -150,3 +151,8 @@
     - docker build -t 1992choi/user-service:1.0 .
     - docker push 1992choi/user-service:1.0
     - docker run -d --network ecommerce-network --name user-service -e "spring.cloud.config.uri=http://config-service:8888" -e "spring.rabbitmq.host=rabbitmq" -e "spring.zipkin.base-url=http://zipkin:9411" -e "eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/" -e "logging.file=/api-logs/users-ws.log" 1992choi/user-service:1.0
+  - Order
+    - Dockerfile 경로에서 아래 명령어 실행
+    - docker build -t 1992choi/order-service:1.0 .
+    - docker push 1992choi/order-service:1.0
+    - docker run -d --network ecommerce-network --name order-service -e "spring.cloud.config.uri=http://config-service:8888" -e "spring.rabbitmq.host=rabbitmq" -e "spring.zipkin.base-url=http://zipkin:9411" -e "eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/" -e "spring.datasource.url=jdbc:mariadb://mariadb:3306/mydb" -e "logging.file=/api-logs/orders-ws.log" 1992choi/order-service:1.0
