@@ -149,5 +149,4 @@
     - Dockerfile 경로에서 아래 명령어 실행
     - docker build -t 1992choi/user-service:1.0 .
     - docker push 1992choi/user-service:1.0
-    - docker run 1992choi/user-service:1.0 (기본 실행)
-    - docker run -d --network ecommerce-network --name user-service -e "spring.cloud.config.uri=http://config-service:8888" -e "spring.rabbitmq.host=rabbitmq" -e "spring.zipkin.base-url=http://zipkin:9411" -e "eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/" -e "logging.file=/api-logs/users-ws.log" 1992choi/user-service
+    - docker run -d --network ecommerce-network --name user-service -e "spring.cloud.config.uri=http://config-service:8888" -e "spring.rabbitmq.host=rabbitmq" -e "spring.zipkin.base-url=http://zipkin:9411" -e "eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/" -e "logging.file=/api-logs/users-ws.log" 1992choi/user-service:1.0
