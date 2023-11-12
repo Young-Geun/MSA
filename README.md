@@ -156,3 +156,8 @@
     - docker build -t 1992choi/order-service:1.0 .
     - docker push 1992choi/order-service:1.0
     - docker run -d --network ecommerce-network --name order-service -e "spring.cloud.config.uri=http://config-service:8888" -e "spring.rabbitmq.host=rabbitmq" -e "spring.zipkin.base-url=http://zipkin:9411" -e "eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/" -e "spring.datasource.url=jdbc:mariadb://mariadb:3306/mydb" -e "logging.file=/api-logs/orders-ws.log" 1992choi/order-service:1.0
+  - Catalog
+    - Dockerfile 경로에서 아래 명령어 실행
+    - docker build -t 1992choi/catalog-service:1.0 .
+    - docker push 1992choi/catalog-service:1.0
+    - docker run -d --network ecommerce-network --name catalog-service -e "spring.cloud.config.uri=http://config-service:8888" -e "spring.rabbitmq.host=rabbitmq" -e "eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/" -e "logging.file=/api-logs/catalog-ws.log" 1992choi/catalog-service:1.0
