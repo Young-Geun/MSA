@@ -1,6 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: '{cipher}AQCh27kvt2PK44etWpSmXzkq+OIgegR0buqBW18t2C6MaeoAYX8iV9itBZIPy1Iiv2T1f2h83yyrennd2v6hQMGdCcHq+CGt+0jjRu9xuMZzfF01j+hhvly4JZPgxtk4oqr2k1VvYbn7CYCtUr0mnKiQxi28mIAZWCQ1uGDbMCAt+ywxKCHQ+lFtehxSvwPAMzhYvVSxSUBFGFVzwpilnHxkphBqZlk4O/VBT5dn2nlhaApXyhWZkfWheepvNXZueJm6/4BxC4vh4I8rIS21Ubm/OsbJNI2wNu0tWtlo9LABZTiG9xAGA5StOJl6RMZHQyPu8rWX1PHP96PmxGs3kixO281cw2zLQHVmZ2ZCN/tcQQGU+snaQvAjIFePn49mVwk='
+  
 token:
   expiration-time: 86400000
-  secret: user_token
+  secret: '{cipher}AQAGsi9VwtBtUVdqrixE7nPx7oe3xrgZ49Kf8h92yPUUN1v+TaX4rSEgepXyTiZtG2SSXaVD7tZIYByfid6VC/n+5B+JMtBhs4umPyZ5M5X5Pvqer08jFYSre1KuQVIUD2DnzQI6JVgxGDRzGuVD5MfDPxeWjMJTalzvYPswj6mG7XNM2/CXtso1jlX7JrDn7L+IUI2MtlZ31jcZ7CCDW8HbTqoCLAZFcdMthpYBsoav1/uxPhOsEYW1Gh1qpPB3bIXMgpNxK8d02ffTTosYsnZ3lUrSzMWcAJPD9RUcocfUrmnURaXVzKr/ngAo2JkhCVpApa4H58s4BuomVjCBKoFvZsQoVc4CH4GO+FUzQLSp0hg1AsPpLg/MHiiAni+mteo='
+
+gateway:
+  ip: 172.18.0.5
 
 actuator:
-  refresh-test: hello2
+  refresh-test: hello_using_rabbitmq
+
+order-service:
+  url: http://ORDER-SERVICE-0/order-service/%s/orders
